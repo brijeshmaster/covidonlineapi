@@ -1,58 +1,17 @@
-// import React from "react";
-// import { useState } from "react";
-// import { useEffect } from "react";
 
-// const Covid = () => {
-//   const [newdata, setnewdata] = useState(null);
-//   const [Loading, setLoading] = useState(false);
-
-//   const myapidata = async () => {
-//     try {
-//       setLoading(true);
-//       const apidata = await fetch("https://data.covid19india.org/data.json");
-
-//       const newapi = await apidata.json();
-//       // console.log(newapi)
-//       setnewdata(newapi);
-//       setLoading(false);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     myapidata();
-//   }, []);
-
-//   return (
-//     <>
-//       {Loading ? (
-//         <h1>loading</h1>
-//       ) : (
-//         <>
-//           {newdata && <p> data are : {newdata?.statewise[0]?.recovered}</p>}
-//           {console.log(newdata)}
-//         </>
-//       )}
-//     </>
-//   );
-// };
-
-// export default Covid;
 
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
 const Covid = () => {
-
-  const [myrealdata, setmyrealdata] = useState({})
+  const [myrealdata, setmyrealdata] = useState({});
   const mycoviddata = async () => {
     try {
       const myapi = await fetch("https://data.covid19india.org/data.json");
       const newapi = await myapi.json();
       // console.log(newapi.statewise[0]);
-      setmyrealdata(newapi.statewise[0])
+      setmyrealdata(newapi.statewise[0]);
     } catch (error) {
       console.log(error);
     }
@@ -63,27 +22,68 @@ const Covid = () => {
   });
 
   return (
+
+
     <>
-      <div className="bg-red-50">
-        <p className="text-center text-2xl p-20 m-4 text-red-800 font-bold underline underline-offset-4 from-transparent ">ONLINE COVID RESULT</p>
-        <div className="grid grid-cols-3 bg-white w-[40em] gap-8 mx-auto place-items-center ">
-          <div className="bg-red-700  text-cyan-50 w-[10em] h-[10em] text-center hover:scale-150 text-lg p-3 font-bold shadow-2xl rounded-xl shadow-3xl ">COUNTRY
-          <div className=" text-center p-8 shadow-2xl"  >INDIA</div>
-          </div>
-          <div className="bg-red-700  text-cyan-50 w-[10em] h-[10em] text-center hover:scale-150 text-lg p-3 font-bold shadow-2xl rounded-xl shadow-3xl ">RECOVERED
-          <div className=" text-center p-8 shadow-2xl"  >{myrealdata.recovered}</div>
-          </div>
-          <div className="bg-red-700  text-cyan-50 w-[10em] h-[10em] text-center hover:scale-150 text-lg p-3 font-bold shadow-2xl rounded-xl shadow-3xl ">CONFIRMED
-          <div className=" text-center p-8 shadow-2xl"  >{myrealdata.confirmed}</div>
-          </div>
-          <div className="bg-red-700  text-cyan-50 w-[10em] h-[10em] text-center hover:scale-150 text-lg p-3 font-bold shadow-2xl rounded-xl shadow-3xl ">DEATH
-          <div className=" text-center p-8 shadow-2xl"  >{myrealdata.deaths}</div>
-          </div>
-          <div className="bg-red-700  text-cyan-50 w-[10em] h-[10em] text-center hover:scale-150 text-lg p-3 font-bold shadow-2xl rounded-xl shadow-3xl ">ACTIVE
-          <div className=" text-center p-8 shadow-2xl"  >{myrealdata.active}</div>
-          </div>
-          <div className="bg-red-700  text-cyan-50 w-[10em] h-[10em] text-center hover:scale-150 text-lg p-3 font-bold shadow-2xl rounded-xl shadow-3xl ">UPDATED
-          <div className=" text-center p-8 shadow-2xl"  >{myrealdata.lastupdatedtime}</div>
+      <div className="bg-red-200 w-[80vw] mx-auto h-[96vh] mt-3 mb-3 ">
+        <div className="bg-red-100 flex flex-col items-center justify-center gap-8 w-full h-full">
+          <h1 className=" font-bold text-3xl underline underline-offset-2">
+            ONLINE COVID19
+          </h1>
+
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-8 h-[80vh] w-full ">
+            <div className="h-40 w-40 flex justify-center items-center bg-[#ed1c24]">
+              <div className="bg-[#f6d163] h-32 w-32 flex flex-col items-center gap-y-8 hover:scale-110 shadow-lg shadow-red-400">
+                <h1 className="font-bold text-lg text-center pt-3">COUNTRY</h1>
+                <p className="font-semibold text-base text-center">INDIA</p>
+              </div>
+            </div>
+            <div className="h-40 w-40 flex justify-center items-center bg-[#ed1c24]">
+              <div className="bg-[#f6d163]  h-32 w-32 flex flex-col items-center gap-y-8 hover:scale-110 ">
+                <h1 className="font-bold text-lg text-center pt-3">
+            
+                  RECOVERED
+                </h1>
+                <p className="font-semibold text-base text-center">
+                  
+                  {myrealdata.recovered}
+                </p>
+              </div>
+            </div>
+            <div className="h-40 w-40 flex justify-center items-center bg-[#ed1c24]">
+              <div className="bg-[#f6d163] h-32 w-32 flex flex-col items-center gap-y-8 hover:scale-110 ">
+                <h1 className="font-bold text-lg text-center pt-3">
+                  CONFIRMED
+                </h1>
+                <p className="font-semibold text-base text-center">
+                  {myrealdata.confirmed}
+                </p>
+              </div>
+            </div>
+            <div className="h-40 w-40 flex justify-center items-center bg-[#ed1c24]">
+              <div className="bg-[#f6d163] h-32 w-32 flex flex-col items-center gap-y-8 hover:scale-110 ">
+                <h1 className="font-bold text-lg text-center pt-3">DEATH</h1>
+                <p className="font-semibold text-base text-center">
+                  {myrealdata.deaths}
+                </p>
+              </div>
+            </div>
+            <div className="h-40 w-40 flex justify-center items-center bg-[#ed1c24]">
+              <div className="bg-[#f6d163] h-32 w-32 flex flex-col items-center gap-y-8 hover:scale-110 ">
+                <h1 className="font-bold text-lg text-center pt-3"> ACTIVE</h1>
+                <p className="font-semibold text-base text-center">
+                  {myrealdata.active}
+                </p>
+              </div>
+            </div>
+            <div className="h-40 w-40 flex justify-center items-center bg-[#ed1c24]">
+              <div className="bg-[#f6d163] h-32 w-32 flex flex-col items-center gap-y-8 hover:scale-110 ">
+                <h1 className="font-bold text-lg text-center pt-3"> UPDATED</h1>
+                <p className="font-semibold text-base text-center">
+                  {myrealdata.lastupdatedtime}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
